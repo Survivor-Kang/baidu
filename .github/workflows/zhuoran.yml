@@ -2,7 +2,7 @@ name: zhuoran
 
 on: 
   schedule:
-    - cron: '0 9,18 * * *' # 设置定时任务的执行时间
+    - cron: '30 9,18 * * *' # 设置定时任务的执行时间
 
 jobs:
   build:
