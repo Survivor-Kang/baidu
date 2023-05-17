@@ -2,10 +2,10 @@ name: zhuoran
 
 on: #[push]
   schedule:
-    - cron: '25 11,18 * * *'
+    - cron: '0 4,11 * * *'
 
-#env:
-  #TZ: Asia/Shanghai
+env:
+  TZ: Asia/Shanghai
 
 jobs:
   build:
