@@ -28,8 +28,8 @@ def send_email():
         # 发送邮件
         sender_email = '2235442745@qq.com' # 发件人邮箱地址
         sender_password = 'ajscperiywiodhgd'  # 发件人邮箱授权码或密码
-        receiver_emails = ['2448266898@qq.com', '2547852798@qq.com', 'rngming@qq.com', '1602318741@qq.com',
-                           '179194516@qq.com', '1961545128@qq.com', '2273074374@qq.com']  # 收件人邮箱地址
+        receiver_emails = ['2448266898@qq.com']#, '2547852798@qq.com', 'rngming@qq.com', '1602318741@qq.com',
+                           #'179194516@qq.com', '1961545128@qq.com', '2273074374@qq.com']  # 收件人邮箱地址
         msg = MIMEText(body)
         msg['Subject'] = subject
         msg['From'] = formataddr(('百度热点消息排行榜', sender_email))
