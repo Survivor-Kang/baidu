@@ -1,11 +1,11 @@
 name: zhuoran
 
-on: [push]
-  #schedule:
-   # - cron: '12 11,18 * * *'
+on: #[push]
+  schedule:
+    - cron: '12 11,18 * * *'
 
-env:
-  TZ: Asia/Shanghai
+#env:
+  #TZ: Asia/Shanghai
 
 jobs:
   build:
