@@ -2,7 +2,7 @@ name: zhuoran
 
 on: 
   schedule:
-    - cron: '0 9,18 * * *'
+    - cron: '12 11,18 * * *'
 
 env:
   TZ: Asia/Shanghai
