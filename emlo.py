@@ -5,7 +5,6 @@ import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
 from datetime import datetime
-
 def send_email():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36'
@@ -26,7 +25,6 @@ def send_email():
         current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         subject = f'百度最新热榜消息 - {current_time}'  # 在主题中添加当前时间
         body = f'百度最新热榜排行{url}\n,{content}'
-
         # 发送邮件
         sender_email = '2235442745@qq.com' # 发件人邮箱地址
         sender_password = 'ajscperiywiodhgd'  # 发件人邮箱授权码或密码
@@ -36,7 +34,6 @@ def send_email():
         msg['Subject'] = subject
         msg['From'] = formataddr(('百度热点消息排行榜', sender_email))
         msg['To'] = ','.join(receiver_emails)
-
         try:
             with smtplib.SMTP('smtp.qq.com', 587) as smtp:
                 smtp.starttls()
@@ -47,5 +44,4 @@ def send_email():
             print("发送失败:", str(e))
     else:
         print('请求失败，状态码为', response.status_code)
-
 send_email()
