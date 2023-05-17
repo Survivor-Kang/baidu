@@ -1,8 +1,8 @@
 name: zhuoran
 
-on:
-  schedule:
-    - cron: '0 9,18,20 * * *' # 设置定时任务的执行时间
+on: [push]
+  #schedule:
+    #- cron: '0 9,18,20 * * *' # 设置定时任务的执行时间
 
 jobs:
   build:
