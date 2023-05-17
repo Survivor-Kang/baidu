@@ -1,0 +1,24 @@
+name: Schedule
+
+on:
+  schedule:
+    - cron: '0 9,20 * * *' # 设置定时任务的执行时间
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x # 选择适合的Python版本
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt # 如果有依赖包，需要安装
+
+      - name: Run Python script
+        run: python emlo.py # 替换为你的Python文件名
