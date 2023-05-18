@@ -1,0 +1,27 @@
+name: richang
+
+on: [push]
+  #schedule:
+   # - cron: '0 4,11 * * *'
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10.10 # 选择适合的Python版本
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt # 如果有依赖包，需要安装
+
+      - name: Run Python script
+        run: python richang.py # 替换为你的Python文件名
