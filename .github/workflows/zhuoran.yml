@@ -1,27 +1,44 @@
 name: zhuoran
 
-on: #[push]
+on:
   schedule:
+    # GitHub Actions 的 cron 一律按 UTC 计算，env 里的 TZ 不影响调度时间。
+    # 下面这一条对应北京时间 12:00 和 19:00。
     - cron: '0 4,11 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 env:
   TZ: Asia/Shanghai
 
+concurrency:
+  group: zhuoran
+  cancel-in-progress: true
+
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v7
         with:
-          python-version: 3.10.10 # 选择适合的Python版本
+          # 只写大版本并加引号。原来写死 3.10.10 会报
+          # "Version 3.10.10 with arch x64 not found"；不加引号会被 YAML 当成 3.1。
+          python-version: '3.10'
+          cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt # 如果有依赖包，需要安装
+        run: pip install -r requirements.txt
 
       - name: Run Python script
-        run: python emlo.py # 替换为你的Python文件名
+        env:
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+        run: python emlo.py
